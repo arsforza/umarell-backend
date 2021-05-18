@@ -23,6 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+require('./configs/session.config')(app);
+
 app.use(
     session({
         secret: process.env.SESS_SECRET,
@@ -38,9 +40,10 @@ app.locals.title = process.env.LOCALS_TITLE;
 
 app.use(cors({
     credentials: true,
-    origin: [`http://localhost:${process.env.PORT}`],
+    origin: [`http://localhost:3000`],
 }));
 
 app.use('/api', require('./routes/auth.routes'));
+app.use('/api', require('./routes/forum.routes'));
 
 module.exports = app;
