@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const cors = require('cors')
 const session = require('express-session');
 const passport = require('passport');
 
@@ -38,10 +37,7 @@ app.use(passport.session());
 
 app.locals.title = process.env.LOCALS_TITLE;
 
-app.use(cors({
-    credentials: true,
-    origin: [`http://localhost:3000`],
-}));
+require('./configs/cors.config')(app);
 
 app.use('/api', require('./routes/auth.routes'));
 app.use('/api', require('./routes/forum.routes'));
