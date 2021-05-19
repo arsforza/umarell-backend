@@ -41,5 +41,6 @@ require('./configs/cors.config')(app);
 
 app.use('/api', require('./routes/auth.routes'));
 app.use('/api', require('./routes/forum.routes'));
+app.use('/api', require('./routes/file-upload.routes'));
 
 module.exports = app;

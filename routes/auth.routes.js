@@ -34,7 +34,7 @@ authRoutes.post('/signup', (req, res, next) => {
     .then((createdUser) => {
         const { _id, username, createdAt, updatedAt } = createdUser;
         console.log('Newly created user: ', username);
-        res.status(200).json({ _id, username, createdAt, updatedAt });
+        res.status(200).json({ _id, username, avatar, createdAt, updatedAt });
     })
     .catch((err) => {
         if(err.code === 11000) {
@@ -63,9 +63,9 @@ authRoutes.post('/login', (req, res, next) => {
                 return;
             }
 
-            const { _id, username } = theUser
+            const { _id, username, avatar } = theUser
 
-            res.status(200).json({ _id, username });
+            res.status(200).json({ _id, username, avatar });
         });
     })(req, res, next);
 });

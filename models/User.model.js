@@ -3,8 +3,10 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
     {
-        username: { type: String, uniquie: true },
+        username: { type: String, unique: true },
         password: String,
+        role: { type: String, default: 'user' },
+        avatar: { type: String, default: 'https://res.cloudinary.com/dbt2ubezb/image/upload/v1621456216/umarell/user_avatars/_default_avatar.png' },
     },
     {
         timestamps: true,

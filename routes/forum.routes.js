@@ -27,7 +27,7 @@ forumRoutes.get('/thread/:id', (req, res, next) => {
         path: 'posts',
         populate: {
             path: 'user',
-            select: ['_id', 'username'],
+            select: ['_id', 'username', 'avatar'],
         },
     })
     .then((thread) => {
@@ -96,6 +96,25 @@ forumRoutes.post('/post', (req, res, next) => {
     .catch((err) => console.error(err));
 });
 
+forumRoutes.get('/user/:id', (req, res, next) => {
+    const { id } = req.params;
 
+    User.findById(id)
+    .then((user) => {
+        const { _id, username, avatar } = user;
+        res.status(200).json({ _id, username, avatar });
+    })
+    .catch((err) => console.error(err));
+});
+
+forumRoutes.put('/user/:id', () => {
+    User.findByIdAndUpdate(id, { avatar: req.file.path })
+    .then((user) => {
+        const { _id, username, avatar } = user;
+        res.status(200).json({ _id, username, avatar });
+    })
+    .catch((err) => console.error(err));
+
+})
 
 module.exports = forumRoutes;
