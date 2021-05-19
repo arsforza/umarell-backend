@@ -4,7 +4,7 @@ const fileUploader = require('../configs/cloudinary.config');
 
 
 
-fileUploadRoutes.post('/uploadimg', fileUploader.single('avatar'), (req, res, next) => {
+fileUploadRoutes.post('/uploadimg', fileUploader.single('imagefile'), (req, res, next) => {
     if(!req.file) {
         next(new Error('No file uploaded!'));
         return;

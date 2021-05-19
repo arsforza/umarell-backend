@@ -107,8 +107,10 @@ forumRoutes.get('/user/:id', (req, res, next) => {
     .catch((err) => console.error(err));
 });
 
-forumRoutes.put('/user/:id', () => {
-    User.findByIdAndUpdate(id, { avatar: req.file.path })
+forumRoutes.put('/changeavatar', (req, res, next) => {
+    const {userId, imgUrl} = req.body;
+
+    User.findByIdAndUpdate(userId, { avatar: imgUrl })
     .then((user) => {
         const { _id, username, avatar } = user;
         res.status(200).json({ _id, username, avatar });
