@@ -32,7 +32,7 @@ authRoutes.post('/signup', (req, res, next) => {
         });
     })
     .then((createdUser) => {
-        const { _id, username, createdAt, updatedAt } = createdUser;
+        const { _id, username, avatar, createdAt, updatedAt } = createdUser;
         console.log('Newly created user: ', username);
         res.status(200).json({ _id, username, avatar, createdAt, updatedAt });
     })
@@ -77,7 +77,8 @@ authRoutes.post('/logout', (req, res, next) => {
 
 authRoutes.get('/loggedin', (req, res, next) => {
     if(req.isAuthenticated()) {
-        res.status(200).json(req.user);
+        const { _id, username, avatar } = req.user;
+        res.status(200).json({ _id, username, avatar });
         return;
     }
     res.status(403).json({ message: 'Unauthorized' });

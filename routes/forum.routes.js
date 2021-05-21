@@ -82,11 +82,11 @@ forumRoutes.put('/thread/:id', (req, res, next) => {
 });
 
 forumRoutes.post('/post', (req, res, next) => {
-    const { user, content, thread } = req.body;
+    const { user, images, content, thread } = req.body;
 
     ForumPost.create({
         user,
-        images: [],
+        images,
         content,
         thread,
     })
@@ -108,7 +108,7 @@ forumRoutes.get('/user/:id', (req, res, next) => {
 });
 
 forumRoutes.put('/changeavatar', (req, res, next) => {
-    const {userId, imgUrl} = req.body;
+    const { userId, imgUrl } = req.body;
 
     User.findByIdAndUpdate(userId, { avatar: imgUrl })
     .then((user) => {
